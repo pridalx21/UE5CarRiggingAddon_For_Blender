@@ -51,6 +51,10 @@ class Rig_OT_Operator(bpy.types.Operator):
 
     
     def add_child_bone(self, bone_name, parent_bone, wheel_mesh, armature_data, bone_length):
+        #Check if bone already exists
+        if bone_name in armature_data.data.edit_bones:
+            return armature_data.data.edit_bones[bone_name]
+            
         #Create a new bone
         new_bone = armature_data.data.edit_bones.new(bone_name)
         #Set bone's parent
