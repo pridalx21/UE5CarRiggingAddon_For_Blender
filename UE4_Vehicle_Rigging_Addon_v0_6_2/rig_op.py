@@ -146,10 +146,6 @@ class Rig_OT_Operator(bpy.types.Operator):
 
         #making additional mesh array for brake calipers and instruments
         additional_mesh_array = []
-        if brake_caliper_FR is not None:
-            additional_mesh_array.append(brake_caliper_FR)
-        if brake_caliper_FL is not None:
-            additional_mesh_array.append(brake_caliper_FL)
         if speedometer_needle is not None:
             additional_mesh_array.append(speedometer_needle)
         if tachometer_needle is not None:
@@ -247,6 +243,12 @@ class Rig_OT_Operator(bpy.types.Operator):
         #Select additional meshes for parenting
         for mesh in additional_mesh_array:
             mesh.select_set(state=True)
+            
+        #Select brake caliper meshes for parenting  
+        if brake_caliper_FR is not None:
+            brake_caliper_FR.select_set(state=True)
+        if brake_caliper_FL is not None:
+            brake_caliper_FL.select_set(state=True)
 
         #Set armature active
         C.view_layer.objects.active = armature_data
@@ -265,13 +267,13 @@ class Rig_OT_Operator(bpy.types.Operator):
             self.set_vertex_group(wheel_RR, 'RR')
             self.set_vertex_group(wheel_FL, 'FL')
             self.set_vertex_group(wheel_FR, 'FR')
-            
-            #Set vertex groups for brake calipers
-            if brake_caliper_FR is not None:
-                self.set_vertex_group(brake_caliper_FR, 'Brake_Caliper_FR')
-            if brake_caliper_FL is not None:
-                self.set_vertex_group(brake_caliper_FL, 'Brake_Caliper_FL')
                 
+        #Set vertex groups for brake calipers (always, regardless of wheel mode)
+        if brake_caliper_FR is not None:
+            self.set_vertex_group(brake_caliper_FR, 'Brake_Caliper_FR')
+        if brake_caliper_FL is not None:
+            self.set_vertex_group(brake_caliper_FL, 'Brake_Caliper_FL')
+            
         #Set vertex groups for dashboard instruments
         if speedometer_needle is not None:
             self.set_vertex_group(speedometer_needle, 'Speedometer_Needle')
