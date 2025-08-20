@@ -212,12 +212,12 @@ class Rig_OT_Operator(bpy.types.Operator):
             wheel_RR_bone = self.add_child_bone('RR', root_bone, wheel_RR, armature_data, scene.bone_length)
             wheel_FL_bone = self.add_child_bone('FL', root_bone, wheel_FL, armature_data, scene.bone_length)
             wheel_FR_bone = self.add_child_bone('FR', root_bone, wheel_FR, armature_data, scene.bone_length)
-            
-            #Add brake caliper bones as children of root bone (not wheels)
-            if brake_caliper_FR is not None:
-                self.add_child_bone('Brake_Caliper_FR', root_bone, brake_caliper_FR, armature_data, scene.bone_length)
-            if brake_caliper_FL is not None:
-                self.add_child_bone('Brake_Caliper_FL', root_bone, brake_caliper_FL, armature_data, scene.bone_length)
+                
+        #Add brake caliper bones as children of root bone (not wheels)
+        if brake_caliper_FR is not None:
+            self.add_child_bone('Brake_Caliper_FR', root_bone, brake_caliper_FR, armature_data, scene.bone_length)
+        if brake_caliper_FL is not None:
+            self.add_child_bone('Brake_Caliper_FL', root_bone, brake_caliper_FL, armature_data, scene.bone_length)
                 
         #Add dashboard instrument bones as children of root bone
         if speedometer_needle is not None:
